@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
-use App\Http\Requests\userDeleteRequest;
+use App\Http\Requests\UserDeleteRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -63,8 +63,7 @@ class UserController extends Controller
             }else{
                 return response()->json([
                     'status' => false,
-                    "message' => 'Error when deleting of id {$request->id}",
-                    'token' => $user->createToken("authToken")->plainTextToken
+                    "message' => 'Error when deleting of id {$request->id}"
                 ], 500);
             }
 
