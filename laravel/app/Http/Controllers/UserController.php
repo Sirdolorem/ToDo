@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserDeleteRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -37,22 +38,24 @@ class UserController extends Controller
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',
-                ], 401);
-            }
+                ], 501);
+        }
 
-            $user = User::where('email', $request->email)->first();
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User Logged In Successfully',
-                'token' => $user->createToken("authToken")->plainTextToken
-            ], 200);
+
+       $user = User::where('email', $request->email)->first();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Logged In Successfully',
+            'token' => $user->createToken("authToken")->plainTextToken
+        ], 200);
     }
 
     function delete(userDeleteRequest $request){
         $request->validated();
 
-        $user = User::findOrFail($request->id);
+        $user = Auth::user();
 
             if($user->delete()){
                 return response()->json([
@@ -68,4 +71,16 @@ class UserController extends Controller
             }
 
     }
+
+    function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        Auth::logout();
+
+            return response([
+                'status' => true,
+                'message' => "User logged out successfully"
+            ], 200);
+        }
+
+
 }

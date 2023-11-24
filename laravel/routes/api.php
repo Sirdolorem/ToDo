@@ -18,7 +18,10 @@ use App\Http\Controllers\UserController;
 
 Route::post("/auth/register", [UserController::class, "register"]);
 Route::post("/auth/login", [UserController::class, "login"]);
-Route::post("/auth/delete", [UserController::class, "delete"]);
+Route::post("/auth/delete", [UserController::class, "delete"])->middleware("auth:sanctum");
+Route::get("/auth/logout", [UserController::class, "logout"])->middleware("auth:sanctum");
 Route::post("/todo/create", [ToDoController::class, "create"])->middleware("auth:sanctum");
 Route::post("/todo/update", [ToDoController::class, "update"])->middleware("auth:sanctum");
+Route::get("/todo/get", [ToDoController::class, "get"])->middleware("auth:sanctum");
+Route::post("/todo/delete", [ToDoController::class, "delete"])->middleware("auth:sanctum");
 

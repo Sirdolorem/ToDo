@@ -22,7 +22,7 @@ class ToDoCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "string|required",
+            "name" => "string|required|unique:todo,name",
             "description" => "string",
             "complete_date" => "date"
         ];

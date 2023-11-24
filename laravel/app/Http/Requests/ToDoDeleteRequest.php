@@ -11,7 +11,7 @@ class ToDoDeleteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class ToDoDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "id" => "required|numeric|exists:todo,id",
         ];
     }
 }
