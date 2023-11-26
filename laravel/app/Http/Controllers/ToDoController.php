@@ -41,7 +41,7 @@ class ToDoController extends Controller
 
         $todo->name = ($request->has("name")) ? $request->name : $todo->name;
         $todo->description = ($request->has("description")) ? $request->description : $todo->description;
-        $todo->complete_date = ($request->has("complete_date")) ? $request->complete_date : $todo->complete_date;
+        $todo->completeDate = ($request->has("complete_date")) ? $request->completeDate : $todo->complete_date;
 
         $status = $todo->save();
 
