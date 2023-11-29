@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string("name");
             $table->string("description")->nullable();
-            $table->dateTime("createDate")->default(Carbon\Carbon::now()->toDateTimeString());
-            $table->dateTime("completeDate")->nullable();
+            $table->date("createDate")->default(Carbon\Carbon::now()->toDateString());
+            $table->date("completeDate")->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });

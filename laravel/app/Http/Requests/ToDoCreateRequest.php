@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ToDoCreateRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -24,7 +25,7 @@ class ToDoCreateRequest extends FormRequest
         return [
             "name" => "string|required|unique:todo,name",
             "description" => "string",
-            "complete_date" => "date"
+            "completeDate" => "date"
         ];
     }
 }

@@ -25,7 +25,7 @@ class ToDoUpdateRequest extends FormRequest
             "id" => "required|numeric|exists:todo,id",
             "name" => "string",
             "description" => "string",
-            "complete_date" => "date"
+            "completeDate" => "date"
         ];
     }
 }

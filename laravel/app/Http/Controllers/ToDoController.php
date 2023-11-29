@@ -28,7 +28,7 @@ class ToDoController extends Controller
         }else{
             return response([
                 'status' => true,
-                'message' => "ToDo of id {$todo->id} created successfully"
+                'message' => "ToDo created successfully"
             ], 200);
         }
     }
@@ -41,7 +41,7 @@ class ToDoController extends Controller
 
         $todo->name = ($request->has("name")) ? $request->name : $todo->name;
         $todo->description = ($request->has("description")) ? $request->description : $todo->description;
-        $todo->completeDate = ($request->has("complete_date")) ? $request->completeDate : $todo->complete_date;
+        $todo->completeDate = ($request->has("completeDate")) ? $request->completeDate : $todo->completeDate;
 
         $status = $todo->save();
 
@@ -53,7 +53,7 @@ class ToDoController extends Controller
         }else{
             return response([
                 'status' => true,
-                'message' => "ToDo of id {$todo->id} updated",
+                'message' => "ToDo \"{$todo->name}\" updated",
                 'todo' => $todo
             ], 200);
         }
